@@ -1,4 +1,4 @@
-package com.example.rrajath.todo.activity;
+package com.example.rrajath.app.activity;
 
 import android.app.ListActivity;
 import android.content.Intent;
@@ -8,10 +8,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 
-import com.example.rrajath.todo.R;
-import com.example.rrajath.todo.adapter.TaskAdapter;
-import com.example.rrajath.todo.data.Singleton;
-import com.example.rrajath.todo.database.TasksDatasource;
+import com.example.rrajath.app.R;
+import com.example.rrajath.app.adapter.TaskAdapter;
+import com.example.rrajath.app.data.Singleton;
+import com.example.rrajath.app.database.TasksDatasource;
 
 
 public class MainActivity extends ListActivity {

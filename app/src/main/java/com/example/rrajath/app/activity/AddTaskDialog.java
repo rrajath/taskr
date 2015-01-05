@@ -1,4 +1,4 @@
-package com.example.rrajath.todo.activity;
+package com.example.rrajath.app.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -6,11 +6,11 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.rrajath.todo.R;
-import com.example.rrajath.todo.adapter.TaskAdapter;
-import com.example.rrajath.todo.data.Singleton;
-import com.example.rrajath.todo.data.TaskItem;
-import com.example.rrajath.todo.database.TasksDatasource;
+import com.example.rrajath.app.R;
+import com.example.rrajath.app.adapter.TaskAdapter;
+import com.example.rrajath.app.data.Singleton;
+import com.example.rrajath.app.data.TaskItem;
+import com.example.rrajath.app.database.TasksDatasource;
 
 import java.util.Date;
 

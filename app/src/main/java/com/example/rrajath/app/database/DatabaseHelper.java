@@ -1,4 +1,4 @@
-package com.example.rrajath.todo.database;
+package com.example.rrajath.app.database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

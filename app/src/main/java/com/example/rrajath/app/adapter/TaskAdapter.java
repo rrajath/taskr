@@ -1,4 +1,4 @@
-package com.example.rrajath.todo.adapter;
+package com.example.rrajath.app.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,11 +12,11 @@ import android.widget.ArrayAdapter;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
-import com.example.rrajath.todo.R;
-import com.example.rrajath.todo.data.Singleton;
-import com.example.rrajath.todo.data.TaskItem;
-import com.example.rrajath.todo.database.TasksDatasource;
-import com.example.rrajath.todo.util.DateUtils;
+import com.example.rrajath.app.R;
+import com.example.rrajath.app.data.Singleton;
+import com.example.rrajath.app.data.TaskItem;
+import com.example.rrajath.app.database.TasksDatasource;
+import com.example.rrajath.app.util.DateUtils;
 
 import java.util.List;
 

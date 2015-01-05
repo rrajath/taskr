@@ -1,4 +1,4 @@
-package com.example.rrajath.todo;
+package com.example.rrajath.app;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

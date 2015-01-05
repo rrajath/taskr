@@ -1,4 +1,4 @@
-package com.example.rrajath.todo.util;
+package com.example.rrajath.app.util;
 
 import java.util.Date;
 

@@ -1,11 +1,11 @@
-package com.example.rrajath.todo.database;
+package com.example.rrajath.app.database;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.example.rrajath.todo.data.TaskItem;
+import com.example.rrajath.app.data.TaskItem;
 
 import java.util.ArrayList;
 import java.util.Date;

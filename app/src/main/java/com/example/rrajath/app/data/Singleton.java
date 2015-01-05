@@ -1,4 +1,4 @@
-package com.example.rrajath.todo.data;
+package com.example.rrajath.app.data;
 
 import java.util.ArrayList;
 import java.util.List;
