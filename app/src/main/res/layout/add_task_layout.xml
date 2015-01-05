@@ -39,6 +39,6 @@
             android:onClick="createTask"
             android:text="OK"/>
 
-        </LinearLayout>
+    </LinearLayout>
 
 </LinearLayout>

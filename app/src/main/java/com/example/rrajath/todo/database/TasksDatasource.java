@@ -7,8 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.example.rrajath.todo.data.TaskItem;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -40,11 +38,11 @@ public class TasksDatasource {
         databaseHelper.close();
     }
 
-    public TaskItem createTask(String taskName, String taskDescription) {
+    public TaskItem createTask(TaskItem item) {
         ContentValues contentValues = new ContentValues();
-        contentValues.put(DatabaseHelper.COLUMN_TASK_NAME, taskName);
-        contentValues.put(DatabaseHelper.COLUMN_TASK_DESC, taskDescription);
-        contentValues.put(DatabaseHelper.COLUMN_TASK_DATE, String.valueOf(new java.util.Date()));
+        contentValues.put(DatabaseHelper.COLUMN_TASK_NAME, item.getTaskName());
+        contentValues.put(DatabaseHelper.COLUMN_TASK_DESC, item.getTaskDescription());
+        contentValues.put(DatabaseHelper.COLUMN_TASK_DATE, new Date().getTime());
         contentValues.put(DatabaseHelper.COLUMN_TASK_COMPLETE, "N");
 
         Cursor cursor;
@@ -77,20 +75,6 @@ public class TasksDatasource {
         }
     }
 
-    public void deleteTaskItemByName(String taskName) {
-        String sql = String.format("DELETE FROM %s WHERE %s = '%s'",
-                DatabaseHelper.TABLE_TASKS,
-                DatabaseHelper.COLUMN_TASK_NAME,
-                taskName);
-        try {
-            database.beginTransaction();
-            database.execSQL(sql);
-            database.setTransactionSuccessful();
-        } finally {
-            database.endTransaction();
-        }
-    }
-
     public void deleteCompletedTasks() {
         String sql = String.format("DELETE FROM %s WHERE %s = 'Y'",
                 DatabaseHelper.TABLE_TASKS,
@@ -109,7 +93,6 @@ public class TasksDatasource {
         ContentValues contentValues = new ContentValues();
         contentValues.put(DatabaseHelper.COLUMN_TASK_NAME, taskItem.getTaskName());
         contentValues.put(DatabaseHelper.COLUMN_TASK_DESC, taskItem.getTaskDescription());
-        contentValues.put(DatabaseHelper.COLUMN_TASK_DATE, taskItem.getCreationDate().toString());
         contentValues.put(DatabaseHelper.COLUMN_TASK_COMPLETE, taskItem.isTaskComplete() ? "Y" : "N");
 
         String selection = DatabaseHelper.COLUMN_ID + " LIKE ?";
@@ -149,17 +132,7 @@ public class TasksDatasource {
             taskItem.setId(cursor.getInt(0));
             taskItem.setTaskName(cursor.getString(1));
             taskItem.setTaskDescription(cursor.getString(2));
-//            taskItem.setCreationDate(cursor.getString(3));
-
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            String dateInString = cursor.getString(3);
-
-            try {
-                Date date = dateFormat.parse(dateInString);
-                taskItem.setCreationDate(date);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
+            taskItem.setCreationTime(cursor.getLong(3));
             taskItem.setTaskComplete(cursor.getString(4).equalsIgnoreCase("Y"));
         }
         return taskItem;

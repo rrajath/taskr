@@ -24,7 +24,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + COLUMN_ID + " integer primary key autoincrement, "
             + COLUMN_TASK_NAME + " text not null, "
             + COLUMN_TASK_DESC + " text null, "
-            + COLUMN_TASK_DATE + " text not null, "
+            + COLUMN_TASK_DATE + " integer not null, "
             + COLUMN_TASK_COMPLETE + " text not null);";
 
     public DatabaseHelper(Context context) {

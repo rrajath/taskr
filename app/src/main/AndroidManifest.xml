@@ -25,8 +25,12 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateVisible"
             android:label="Add New Task"
-            android:theme="@android:style/Theme.Holo.Light.Dialog"
-            />
+            android:theme="@android:style/Theme.Holo.Light.Dialog">
+            <intent-filter>
+                <action android:name="com.example.rrajath.todo.activity.AddTaskDialog"/>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            </activity>
     </application>
 
 </manifest>

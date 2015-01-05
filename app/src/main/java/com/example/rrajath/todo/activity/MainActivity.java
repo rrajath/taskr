@@ -10,15 +10,13 @@ import android.widget.ListView;
 
 import com.example.rrajath.todo.R;
 import com.example.rrajath.todo.adapter.TaskAdapter;
-import com.example.rrajath.todo.data.TaskItem;
+import com.example.rrajath.todo.data.Singleton;
 import com.example.rrajath.todo.database.TasksDatasource;
-
-import java.util.List;
 
 
 public class MainActivity extends ListActivity {
 
-    List<TaskItem> taskItems;
+//    List<TaskItem> taskItems;
     TaskAdapter taskAdapter;
     ListView lvItems;
     TasksDatasource datasource;
@@ -29,13 +27,20 @@ public class MainActivity extends ListActivity {
         super.onCreate(savedInstanceState);
 
         datasource = new TasksDatasource(this);
-        datasource.open();
-
         lvItems = (ListView) findViewById(android.R.id.list);
-        taskItems = datasource.getAllTasks();
+
+        datasource.open();
+        Singleton.getInstance().setTaskItems(datasource.getAllTasks());
         datasource.close();
-        taskAdapter = new TaskAdapter(getApplicationContext(), taskItems);
+
+        taskAdapter = new TaskAdapter(getApplicationContext(), Singleton.getInstance().getTaskItems());
         lvItems.setAdapter(taskAdapter);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        taskAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -56,8 +61,8 @@ public class MainActivity extends ListActivity {
             case R.id.clear_completed_tasks:
                 datasource.open();
                 datasource.deleteCompletedTasks();
-                taskItems.clear();
-                taskItems.addAll(datasource.getAllTasks());
+                Singleton.getInstance().getTaskItems().clear();
+                Singleton.getInstance().setTaskItems(datasource.getAllTasks());
                 taskAdapter.notifyDataSetChanged();
                 datasource.close();
                 break;
@@ -69,19 +74,6 @@ public class MainActivity extends ListActivity {
 
     public void addTask(View view) {
         Intent intent = new Intent(this, AddTaskDialog.class);
-        startActivityForResult(intent, 1);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        if (requestCode == 1) {
-            if (resultCode == RESULT_OK) {
-                TaskItem item = new TaskItem();
-                item.setTaskName(intent.getStringExtra("taskName"));
-                item.setTaskDescription(intent.getStringExtra("taskDesc"));
-                taskItems.add(item);
-                taskAdapter.notifyDataSetChanged();
-            }
-        }
+        startActivity(intent);
     }
 }
