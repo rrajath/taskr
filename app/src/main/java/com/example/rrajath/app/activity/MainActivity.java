@@ -13,10 +13,11 @@ import com.example.rrajath.app.adapter.TaskAdapter;
 import com.example.rrajath.app.data.Singleton;
 import com.example.rrajath.app.database.TasksDatasource;
 
+import butterknife.OnClick;
+
 
 public class MainActivity extends ListActivity {
 
-//    List<TaskItem> taskItems;
     TaskAdapter taskAdapter;
     ListView lvItems;
     TasksDatasource datasource;
@@ -72,6 +73,7 @@ public class MainActivity extends ListActivity {
         return true;
     }
 
+    @OnClick(R.id.add_button)
     public void addTask(View view) {
         Intent intent = new Intent(this, AddTaskDialog.class);
         startActivity(intent);

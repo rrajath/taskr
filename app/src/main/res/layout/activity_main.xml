@@ -14,42 +14,25 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
-<!--
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add"
-        android:id="@+id/buttonAdd"
-        android:onClick="addTask"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/etNewItem"
-        android:hint="Add new item"
-        android:layout_alignParentBottom="true"
-        android:layout_toStartOf="@+id/buttonAdd"
-        android:layout_alignParentStart="true" />
--->
-
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:clipToPadding="false">
 
         <ImageButton
             android:id="@+id/add_button"
             android:tint="@android:color/white"
             android:background="@drawable/oval"
-            android:elevation="1dp"
+            android:elevation="@dimen/elevation_low"
+            android:translationZ="5dp"
             android:onClick="addTask"
             android:layout_width="@dimen/round_button_diameter"
             android:layout_height="@dimen/round_button_diameter"
             android:layout_gravity="end|bottom"
             android:layout_marginBottom="@dimen/add_button_margin"
             android:layout_marginEnd="@dimen/add_button_margin"
-            android:src="@android:drawable/ic_input_add"/>
+            android:src="@android:drawable/ic_input_add"
+            android:contentDescription="New Task" />
 
     </FrameLayout>
 
